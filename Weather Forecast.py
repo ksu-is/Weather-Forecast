@@ -29,7 +29,7 @@ city_entry = Entry(main, textvariable=city_name, width=45)
 city_entry.grid(row=1, column=0, ipady=10, stick=W+E+N+S)
 
 def city_name():
-    api_request = requests.get("https://api.openweathermap.org/data/3.0/weather?q="+ city_entry.get() + "&units=metric&appid="+"6ae75eb1bdf34f48ab2620416253ee2b")
+    api_request = requests.get("https://api.openweathermap.org/data/3.0/onecall?q="+ city_entry.get() + "&units=metric&appid="+"6ae75eb1bdf34f48ab2620416253ee2b")
     api = json.loads(api_request.content)
 
 
