@@ -8,7 +8,8 @@ The key features of the program include instant weather updates fetched from rel
 Implement required functions as follows:
 
 - [x] Date and Time
+- [x] API Call
 - [ ] City Search
-- [ ] API Calls
+- [ ] Convey information via GUI
 - [ ] GUI Refinements
 - [ ] Test repository
