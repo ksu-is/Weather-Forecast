@@ -7,7 +7,7 @@ The key features of the program include instant weather updates fetched from rel
 
 Implement required functions as follows:
 
-- [ ] Date and Time
+- [x] Date and Time
 - [ ] City Search
 - [ ] API Calls
 - [ ] GUI Refinements
