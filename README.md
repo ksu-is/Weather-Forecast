@@ -4,7 +4,9 @@ The key features of the program include instant weather updates fetched from rel
 
 # Roadmap
 - [ ] Write inital code
+
 Implement required functions as follows:
+
 - [ ] Date and Time
 - [ ] City Search
 - [ ] API Calls
