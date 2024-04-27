@@ -29,9 +29,27 @@ city_entry = Entry(main, textvariable=city_name, width=45)
 city_entry.grid(row=1, column=0, ipady=10, stick=W+E+N+S)
 
 def city_name():
-    api_request = requests.get("https://api.openweathermap.org/data/3.0/onecall?q="+ city_entry.get() + "&units=metric&appid="+"6ae75eb1bdf34f48ab2620416253ee2b")
+    coords = requests.get("http://api.openweathermap.org/geo/1.0/direct?q=" + city_entry.get() + "&limit=1&appid=6ae75eb1bdf34f48ab2620416253ee2b").json()
+    temp_coords = coords[0]
+    latitude = str(temp_coords.get("lat"))
+    longtitude = str(temp_coords.get("lon"))
+    country = str(temp_coords["country"])
+    citi = str(temp_coords["name"])
+    api_request = requests.get("https://api.openweathermap.org/data/3.0/onecall?lat="+ latitude +"&lon="+ longtitude +"&units=imperial&appid=6ae75eb1bdf34f48ab2620416253ee2b")
     api = json.loads(api_request.content)
-
+    y = api["current"]
+    current_temprature = y['temp']
+    humidity = y['humidity']
+    tempmin = api['daily'][0]['temp']['min']
+    tempmax = api['daily'][0]['temp']['max']
+    lable_temp.configure(text=current_temprature)
+    lable_humidity.configure(text=humidity)
+    max_temp.configure(text=tempmax)
+    min_temp.configure(text=tempmin)
+    lable_lon.configure(text=longtitude)
+    lable_lat.configure(text=latitude)
+    lable_country.configure(text=country)
+    lable_citi.configure(text=citi)
 
 city_nameButton = Button(main, text="Search", command=city_name)
 city_nameButton.grid(row=1, column=1, padx=5, stick=W+E+N+S)
@@ -55,5 +73,9 @@ mini = Label(main, text="Min. Temp.: ", width=0, bg='white', font=("bold", 15))
 mini.place(x=3, y=460)
 min_temp = Label(main, text="...", width=0, bg='white', font=("bold", 15))
 min_temp.place(x=128, y=460)
+humi = Label(main, text="Humidity: ", width=0, bg='white', font=("bold", 15))
+humi.place(x=3, y=400)
+lable_humidity = Label(main, text="...", width=0, bg='white', font=("bold", 15))
+lable_humidity.place(x=107, y=400)
 
 main.mainloop()
