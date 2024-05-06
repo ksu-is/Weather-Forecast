@@ -4,11 +4,14 @@ import datetime
 import os
 os.system('pip install requests')
 import requests
+os.system('pip install Pillow')
+from PIL import ImageTk, Image
 
 main = Tk()
 main.title("Weather Forecast")
 main.geometry("450x700")
 main['background'] = "white"
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 dt = datetime.datetime.now()
 date = Label(main, text=dt.strftime('%A--'), bg='white', font=("bold", 15))
@@ -77,5 +80,21 @@ humi = Label(main, text="Humidity: ", width=0, bg='white', font=("bold", 15))
 humi.place(x=3, y=400)
 lable_humidity = Label(main, text="...", width=0, bg='white', font=("bold", 15))
 lable_humidity.place(x=107, y=400)
+
+new = ImageTk.PhotoImage(Image.open(script_dir + '\logo.png'))
+panel = Label(main, image=new)
+panel.place(x=0, y=520)
+
+if int((dt.strftime('%I'))) >= 8 & int((dt.strftime('%I'))) <= 5:
+    img = ImageTk.PhotoImage(Image.open(script_dir + '\moon.png'))
+    panel = Label(main, image=img)
+    panel.place(x=210, y=200)
+else:
+    img = ImageTk.PhotoImage(Image.open(script_dir + '\sun.png'))
+    panel = Label(main, image=img)
+    panel.place(x=210, y=200)
+
+note = Label(main, text="All temperatures are listed in Fahrenheit", bg='white', font=("italic", 10))
+note.place(x=95, y=495)
 
 main.mainloop()
