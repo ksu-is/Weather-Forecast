@@ -7,5 +7,5 @@ Implement required functions as follows:
 - [x] API Call
 - [x] City Search
 - [x] Convey information via GUI
-- [ ] GUI Refinements
-- [ ] Test repository
+- [x] GUI Refinements
+- [x] Test repository
